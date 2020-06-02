@@ -12,6 +12,7 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -25,11 +26,12 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(signUp(name, email, password));
+    dispatch(signUp(name, email, password, title));
 
     setEmail("");
     setPassword("");
     setName("");
+    setTitle("");
   }
 
   return (
@@ -40,7 +42,7 @@ export default function SignUp() {
           <Form.Label>Name</Form.Label>
           <Form.Control
             value={name}
-            onChange={event => setName(event.target.value)}
+            onChange={(event) => setName(event.target.value)}
             type="text"
             placeholder="Enter name"
             required
@@ -50,7 +52,7 @@ export default function SignUp() {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             type="email"
             placeholder="Enter email"
             required
@@ -64,10 +66,19 @@ export default function SignUp() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
             type="password"
             placeholder="Password"
             required
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicTitle">
+          <Form.Label>Your Homepage Title</Form.Label>
+          <Form.Control
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            type="text"
+            placeholder="Enter your homepage title"
           />
         </Form.Group>
         <Form.Group className="mt-5">
